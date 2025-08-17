@@ -1,5 +1,11 @@
+import sys
+from pathlib import Path
+
+# Projektwurzel dem sys.path hinzufügen
+sys.path.append(str(Path(__file__).resolve().parent.parent))
+
+from app import app  # importiert app.py von oberster Ebene
 from fastapi.testclient import TestClient
-from main import app
 
 client = TestClient(app)
 
