@@ -24,18 +24,18 @@ jobs:
         tags: ${{ secrets.DOCKERHUB_USERNAME }}/hello-world:latest
 
 
-    - name: Setup kubectl
-      uses: azure/setup-kubectl@v4
-      with:
-        version: 'latest'
+    # - name: Setup kubectl
+    #   uses: azure/setup-kubectl@v4
+    #   with:
+    #     version: 'latest'
 
-    - name: Configure kubeconfig
-      run: |
-        mkdir -p $HOME/.kube
-        echo "${{ secrets.KUBECONFIG_CONTENT }}" > $HOME/.kube/config
+    # - name: Configure kubeconfig
+    #   run: |
+    #     mkdir -p $HOME/.kube
+    #     echo "${{ secrets.KUBECONFIG_CONTENT }}" > $HOME/.kube/config
 
-    - name: Deploy to Kubernetes
-      run: kubectl apply -f k8s/deployment.yaml
+    # - name: Deploy to Kubernetes
+    #   run: kubectl apply -f k8s/deployment.yaml
 
-    - name: Verify rollout
-      run: kubectl rollout status deployment/hello-world
+    # - name: Verify rollout
+    #   run: kubectl rollout status deployment/hello-world
