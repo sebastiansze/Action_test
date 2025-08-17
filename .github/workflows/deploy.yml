@@ -11,18 +11,18 @@ jobs:
     - name: Checkout
       uses: actions/checkout@v4
 
-    - name: Login to GitHub Container Registry
+    - name: Login to Docker Hub
       uses: docker/login-action@v3
       with:
-        registry: ghcr.io
-        username: ${{ github.actor }}
-        password: ${{ secrets.GITHUB_TOKEN }}
+        username: ${{ secrets.DOCKERHUB_USERNAME }}
+        password: ${{ secrets.DOCKERHUB_TOKEN }}
 
     - name: Build & Push Docker image
       uses: docker/build-push-action@v5
       with:
         push: true
-        tags: ghcr.io/${{ github.actor }}/hello-world:latest
+        tags: ${{ secrets.DOCKERHUB_USERNAME }}/hello-world:latest
+
 
     - name: Setup kubectl
       uses: azure/setup-kubectl@v4
